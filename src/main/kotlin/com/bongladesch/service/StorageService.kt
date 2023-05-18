@@ -1,12 +1,13 @@
 package com.bongladesch.service
 
-import java.io.InputStream
+import io.smallrye.mutiny.Uni
+import java.nio.file.Path
 
 interface StorageService {
 
-    fun uploadFile(objectId: String, fileStream: InputStream, mimeType: String)
+    fun uploadFile(objectId: String, path: Path, mimeType: String): Uni<Void>
 
-    fun downloadFile(objectId: String): InputStream
+    fun downloadFile(objectId: String): Uni<Path>
 
-    fun deleteFile(objectId: String)
+    fun deleteFile(objectId: String): Uni<Void>
 }
